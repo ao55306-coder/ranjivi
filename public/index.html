@@ -1,0 +1,50 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8" />
+  <title>Ranjivosti</title>
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <link rel="stylesheet" href="index.css">
+</head>
+<body>
+  <div class="container">
+    <h1>Demonstracija ranjivosti</h1>
+
+    <section>
+      <h2>Prekidaci</h2>
+      <label><input type="checkbox" id="toggle-sql"> SQL Injection</label><br>
+      <label><input type="checkbox" id="toggle-broken-auth"> Broken Authentication</label><br>
+    </section>
+
+    <section>
+      <h2>SQL Injection — pretraga korisnika</h2>
+      <input id="sql-q" placeholder="Upiši username ili payload" style="width:60%">
+      <button id="sql-search">Traži</button>
+      <pre id="sql-result"></pre>
+      <p>Primjer tautologije: <code>' OR '1'='1</code> (probaj ovo u polje)</p>
+    </section>
+
+    <section>
+      <h2>Broken Authentication — login</h2>
+      <div>
+        <input id="login-username" placeholder="username">
+        <input id="login-password" placeholder="password" type="password">
+        <button id="login-btn">Login</button>
+        <button id="logout-btn">Logout</button>
+      </div>
+      <pre id="login-result"></pre>
+      <p>
+        U <strong>vulnerable</strong> modu: moguce je pogadanje lozinki beskonacno mnogo puta te poruke otkrivaju napadacu gdje grijesi.<br>
+        U <strong>secure</strong> modu: nakon 5 krivih unosa server odbija login requeste s iste IP adrese na 15 minuta.
+      </p>
+    </section>
+
+    <section>
+      <h2>Log</h2>
+      <pre id="log"></pre>
+    </section>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
