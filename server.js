@@ -128,7 +128,7 @@ app.post('/api/login', async (req, res) => {
         return res.status(401).json({ ok: false, message: 'Incorrect password' });
       }
       res.cookie('session', `${user.username}-token`, { httpOnly: false });
-      return res.json({ ok: true, message: 'Logged in (vulnerable). Session cookie set and readable by JS.' });
+      return res.json({ ok: true, message: 'Logged in (vulnerable).' });
     } else {
       const key = bfKey(ip);
       if (isLocked(key)) {
@@ -149,7 +149,7 @@ app.post('/api/login', async (req, res) => {
       const sid = createSid();
       sessions[sid] = { username: user.username, createdAt: Date.now() };
       res.cookie('sid', sid, { httpOnly: true });
-      return res.json({ ok: true, message: 'Logged in (secure). HttpOnly session cookie set.' });
+      return res.json({ ok: true, message: 'Logged in (secure).' });
     }
   } catch (err) {
     console.error('Login error', err);
